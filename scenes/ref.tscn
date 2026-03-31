@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b528ca81tvmon"]
+
+[ext_resource type="Texture2D" uid="uid://c4pl2xb1cc6hr" path="res://Images/coach.png" id="1_hvtdo"]
+[ext_resource type="Script" path="res://Script/ref.gd" id="1_v8b4c"]
+[ext_resource type="FontFile" uid="uid://bfa74wip8tggx" path="res://GobboxingFont2.ttf" id="3_pgc85"]
+[ext_resource type="AudioStream" uid="uid://frfnvbl4nir8" path="res://Audio/Dialogue/tts1.mp3" id="4_fc20h"]
+
+[node name="Ref" type="Node3D" groups=["Ref"]]
+script = ExtResource("1_v8b4c")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 1.13, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_hvtdo")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.455, 2.15, 0)
+billboard = 1
+texture_filter = 0
+render_priority = 1
+outline_render_priority = 0
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "Hey Bros...
+Let's Have a
+clean fight,
+ok?"
+font = ExtResource("3_pgc85")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_fc20h")

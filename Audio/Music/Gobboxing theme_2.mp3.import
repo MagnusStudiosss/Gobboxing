@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://byuom2n13yj6v"
+path="res://.godot/imported/Gobboxing theme_2.mp3-f49ad865729cc359506bd90a1ca37de4.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Gobboxing theme_2.mp3"
+dest_files=["res://.godot/imported/Gobboxing theme_2.mp3-f49ad865729cc359506bd90a1ca37de4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

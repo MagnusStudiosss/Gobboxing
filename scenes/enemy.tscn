@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlfahqtcp7fgx"]
+
+[ext_resource type="Script" path="res://Script/enemy.gd" id="1_hra3p"]
+[ext_resource type="Texture2D" uid="uid://c5d7vy8ui10ew" path="res://Images/gobbox_guy.png" id="2_kjgyx"]
+[ext_resource type="Texture2D" uid="uid://chyuol36dy53n" path="res://Images/gobox_guy_ponch.png" id="3_cu4w4"]
+[ext_resource type="Texture2D" uid="uid://cco1imrwcag5e" path="res://Images/loser.png" id="3_po2br"]
+[ext_resource type="AudioStream" uid="uid://8fpyvmqrtx5i" path="res://Audio/Sounds/phily hit.mp3" id="4_o685m"]
+[ext_resource type="Texture2D" uid="uid://dkach1rnxwo01" path="res://Images/Gun.png" id="7_l41il"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okmof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kjgyx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_po2br")
+}],
+"loop": true,
+"name": &"loser",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cu4w4")
+}],
+"loop": true,
+"name": &"ponch",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vegxk"]
+height = 1.5
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 3
+script = ExtResource("1_hra3p")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+pixel_size = 0.005
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_okmof")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Sprite3D"]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, -0.144521, 0.017365, -0.116184)
+visible = false
+billboard = 1
+texture_filter = 0
+render_priority = 2
+texture = ExtResource("7_l41il")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_vegxk")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07002, 0)
+stream = ExtResource("4_o685m")
+
+[connection signal="BoxTime" from="." to="." method="_on_box_time"]
+[connection signal="Hit" from="." to="." method="_on_hit"]

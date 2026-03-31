@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=3 uid="uid://d4f6sil011kv0"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_6qwh7"]
+[ext_resource type="Texture2D" uid="uid://bqedhw0wwf3p" path="res://Images/gobbox_logo.png" id="2_08usv"]
+[ext_resource type="Texture2D" uid="uid://bhutf5d2w1upj" path="res://Images/gobbox_logo_hover.png" id="3_7lg50"]
+[ext_resource type="Texture2D" uid="uid://bscvp18vnkya5" path="res://Images/play.png" id="3_xbisc"]
+[ext_resource type="Texture2D" uid="uid://cxuumkewl5uv3" path="res://Images/play_selected.png" id="4_iia81"]
+[ext_resource type="Texture2D" uid="uid://bvovxoe8vgfpm" path="res://Images/quit.png" id="5_5u7p4"]
+[ext_resource type="Texture2D" uid="uid://kc5icdjvimft" path="res://Images/quit_pressed.png" id="6_grpne"]
+[ext_resource type="Texture2D" uid="uid://cdxdwwx2mjimq" path="res://Images/Tool_Tip.png" id="8_852n7"]
+[ext_resource type="Script" path="res://scenes/tool_tip.gd" id="9_rsmk0"]
+[ext_resource type="FontFile" uid="uid://bfa74wip8tggx" path="res://GobboxingFont2.ttf" id="10_3x47w"]
+[ext_resource type="AudioStream" uid="uid://crka73i58rf6y" path="res://Audio/Music/gobbox main menu.mp3" id="11_kqtni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro5em"]
+size = Vector2(1152, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfbb7"]
+size = Vector2(20, 648)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rvl0m"]
+font = ExtResource("10_3x47w")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_6qwh7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54902, 0.662745, 0.447059, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+position = Vector2(0, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(576, 10)
+shape = SubResource("RectangleShape2D_ro5em")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(-10, -324.5)
+shape = SubResource("RectangleShape2D_xfbb7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(1162, -324)
+shape = SubResource("RectangleShape2D_xfbb7")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -312.0
+offset_top = 38.0
+offset_right = 346.0
+offset_bottom = 612.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+color = Color(1, 1, 1, 0.25098)
+
+[node name="Logo" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -243.5
+offset_top = -266.255
+offset_right = 243.5
+offset_bottom = -82.255
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.155, 1.155)
+texture_normal = ExtResource("2_08usv")
+texture_hover = ExtResource("3_7lg50")
+
+[node name="Start" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 0.269989
+offset_right = 112.0
+offset_bottom = 118.27
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_xbisc")
+texture_hover = ExtResource("4_iia81")
+stretch_mode = 3
+
+[node name="Quit" type="TextureButton" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -170.975
+offset_right = 112.0
+offset_bottom = -52.975
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("5_5u7p4")
+texture_hover = ExtResource("6_grpne")
+stretch_mode = 3
+
+[node name="ToolTip" type="TextureButton" parent="."]
+offset_left = 758.0
+offset_top = 280.0
+offset_right = 1258.0
+offset_bottom = 780.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("8_852n7")
+script = ExtResource("9_rsmk0")
+
+[node name="Label" type="Label" parent="ToolTip"]
+layout_mode = 0
+offset_left = 86.6667
+offset_top = 194.667
+offset_right = 374.667
+offset_bottom = 386.667
+rotation = -0.167424
+text = "Click Left and
+right back 
+and forth to get
+PUNCHPOINTS!"
+label_settings = SubResource("LabelSettings_rvl0m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_kqtni")
+autoplay = true
+
+[connection signal="child_entered_tree" from="Node2D" to="." method="_on_canvas_layer_child_entered_tree"]
+[connection signal="pressed" from="Logo" to="." method="_on_logo_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="ToolTip" to="ToolTip" method="_on_pressed"]

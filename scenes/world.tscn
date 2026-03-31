@@ -1,0 +1,136 @@
+[gd_scene load_steps=14 format=3 uid="uid://bilt07wgkb14h"]
+
+[ext_resource type="Script" path="res://Script/world.gd" id="1_yxb5o"]
+[ext_resource type="PackedScene" uid="uid://dlfahqtcp7fgx" path="res://scenes/enemy.tscn" id="2_rh5et"]
+[ext_resource type="PackedScene" uid="uid://biuq6hu86wefs" path="res://scenes/you.tscn" id="3_pg7ob"]
+[ext_resource type="Texture2D" uid="uid://dl32u6aq5ob38" path="res://Images/wall_thing_3.png" id="4_gdrg8"]
+[ext_resource type="PackedScene" uid="uid://b528ca81tvmon" path="res://scenes/ref.tscn" id="4_wffvm"]
+[ext_resource type="PackedScene" uid="uid://cwdnvfx0nhdy5" path="res://scenes/skybox.tscn" id="6_3tpfp"]
+[ext_resource type="AudioStream" uid="uid://byuom2n13yj6v" path="res://Audio/Music/Gobboxing theme_2.mp3" id="7_lgw00"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jy6yc"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f3abq"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vbhg"]
+size = Vector3(11, 5, 1)
+
+[sub_resource type="Animation" id="Animation_6xb1n"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_f8b1p"]
+resource_name = "new_animation"
+length = 2.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, 0, 0, 0, 2.0001, 1, -4.22534, 0, 0, 2.26667, 1, -5.12668, 1.24045, 0, 2.5, 1, -5.91566, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ajwc"]
+_data = {
+"RESET": SubResource("Animation_6xb1n"),
+"new_animation": SubResource("Animation_f8b1p")
+}
+
+[node name="World" type="Node3D" groups=["World"]]
+script = ExtResource("1_yxb5o")
+
+[node name="Enemy" parent="." instance=ExtResource("2_rh5et")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -4)
+axis_lock_linear_y = true
+
+[node name="You" parent="." instance=ExtResource("3_pg7ob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_jy6yc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_f3abq")
+
+[node name="Walls" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 5.5)
+shape = SubResource("BoxShape3D_5vbhg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -5.5)
+shape = SubResource("BoxShape3D_5vbhg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 1.5, 0)
+shape = SubResource("BoxShape3D_5vbhg")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 2.5, 0)
+shape = SubResource("BoxShape3D_5vbhg")
+
+[node name="Sprite3D" type="Sprite3D" parent="Walls"]
+transform = Transform3D(1.12, 0, 0, 0, 1.12, 0, 0, 0, 1.12, 0, 0.5, -5)
+texture_filter = 0
+render_priority = -1
+texture = ExtResource("4_gdrg8")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Walls"]
+transform = Transform3D(1.12, 0, 0, 0, 1.12, 0, 0, 0, 1.12, 0, 0.5, 5)
+texture_filter = 0
+render_priority = -1
+texture = ExtResource("4_gdrg8")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Walls"]
+transform = Transform3D(-4.89568e-08, 0, 1.12, 0, 1.12, 0, -1.12, 0, -4.89568e-08, 5, 0.5, 0)
+texture_filter = 0
+render_priority = -1
+texture = ExtResource("4_gdrg8")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Walls"]
+transform = Transform3D(-4.89568e-08, 0, 1.12, 0, 1.12, 0, -1.12, 0, -4.89568e-08, -5, 0.5, 0)
+texture_filter = 0
+render_priority = -1
+texture = ExtResource("4_gdrg8")
+
+[node name="Ref" parent="." instance=ExtResource("4_wffvm")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ref"]
+libraries = {
+"": SubResource("AnimationLibrary_1ajwc")
+}
+
+[node name="Skybox" parent="." instance=ExtResource("6_3tpfp")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.22241, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.110584, 0.993867, 0, -0.993867, -0.110584, 0, 3.78125, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_lgw00")
+parameters/looping = true
+
+[connection signal="Go" from="." to="You" method="_on_world_go"]
+[connection signal="HealthPackAdded" from="." to="You" method="_on_world_health_pack_added"]
+[connection signal="Win" from="." to="Ref" method="_on_world_win"]
+[connection signal="EnemyDead" from="Enemy" to="." method="_on_enemy_enemy_dead"]
+[connection signal="Hit" from="Enemy" to="You" method="_on_enemy_hit"]
+[connection signal="PUNCHPOINTOVERLOAD" from="You" to="." method="_on_you_punchpointoverload"]
+[connection signal="PlayerDead" from="You" to="." method="_on_you_player_dead"]
+[connection signal="Countdown" from="Ref" to="." method="_on_ref_countdown"]
+[connection signal="Gun" from="Ref" to="Enemy" method="_on_ref_gun"]
+[connection signal="Start" from="Ref" to="." method="_on_ref_start"]
+[connection signal="animation_finished" from="Ref/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

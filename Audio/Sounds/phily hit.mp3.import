@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8fpyvmqrtx5i"
+path="res://.godot/imported/phily hit.mp3-e057832d652bd05c6f0f3cf05f737143.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sounds/phily hit.mp3"
+dest_files=["res://.godot/imported/phily hit.mp3-e057832d652bd05c6f0f3cf05f737143.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

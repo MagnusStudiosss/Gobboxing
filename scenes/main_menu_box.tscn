@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgt2ocy1bmkvh"]
+
+[ext_resource type="Texture2D" uid="uid://bupd738hneror" path="res://Images/Main_Menu_Box.png" id="1_sir3n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cw1k"]
+size = Vector2(100, 87)
+
+[node name="Main_Menu_Box" type="RigidBody2D"]
+scale = Vector2(2, 2)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = -11.0
+offset_right = 100.0
+offset_bottom = 89.0
+texture = ExtResource("1_sir3n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50, 43.5)
+shape = SubResource("RectangleShape2D_5cw1k")

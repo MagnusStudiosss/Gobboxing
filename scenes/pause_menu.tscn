@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://ibkcs87alv6y"]
+
+[ext_resource type="Script" path="res://Script/pause_menu.gd" id="1_7og5h"]
+[ext_resource type="Texture2D" uid="uid://bqedhw0wwf3p" path="res://Images/gobbox_logo.png" id="2_0vq2c"]
+[ext_resource type="Texture2D" uid="uid://bscvp18vnkya5" path="res://Images/play.png" id="3_5wdig"]
+[ext_resource type="Texture2D" uid="uid://cxuumkewl5uv3" path="res://Images/play_selected.png" id="4_tnt1w"]
+[ext_resource type="Texture2D" uid="uid://bvovxoe8vgfpm" path="res://Images/quit.png" id="5_40ec2"]
+[ext_resource type="Texture2D" uid="uid://kc5icdjvimft" path="res://Images/quit_pressed.png" id="6_8y001"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7og5h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+process_mode = 2
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.458824, 0.458824, 0.458824, 0.666667)
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.5
+offset_top = 57.06
+offset_right = 243.5
+offset_bottom = 241.06
+grow_horizontal = 2
+texture = ExtResource("2_0vq2c")
+
+[node name="Start" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -364.5
+offset_right = 112.0
+offset_bottom = -224.5
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_5wdig")
+texture_hover = ExtResource("4_tnt1w")
+
+[node name="Quit" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -203.89
+offset_right = 112.0
+offset_bottom = -63.89
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("5_40ec2")
+texture_hover = ExtResource("6_8y001")
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="button_down" from="Quit" to="." method="_on_quit_button_down"]

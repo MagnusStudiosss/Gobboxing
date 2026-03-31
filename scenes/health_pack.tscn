@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://c450eavdnmyg8"]
+
+[ext_resource type="Script" path="res://Script/health_pack.gd" id="1_d5lxa"]
+[ext_resource type="Texture2D" uid="uid://dhiuhfv7iq6qd" path="res://Images/Lonch.png" id="2_60nt1"]
+
+[sub_resource type="Animation" id="Animation_ggg05"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.554273, 0)
+
+[sub_resource type="Animation" id="Animation_eixl8"]
+resource_name = "Spiiiiin"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, 0, 0.554273, 0, 0.5, 1, 0, 0.862831, 0, 1, 1, 0, 0.554273, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avb8r"]
+_data = {
+"RESET": SubResource("Animation_ggg05"),
+"Spiiiiin": SubResource("Animation_eixl8")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_733mt"]
+
+[node name="HealthPack" type="Node3D" groups=["Health"]]
+script = ExtResource("1_d5lxa")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.554273, 0)
+texture_filter = 0
+texture = ExtResource("2_60nt1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite3D"]
+libraries = {
+"": SubResource("AnimationLibrary_avb8r")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560522, 0)
+shape = SubResource("BoxShape3D_733mt")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
